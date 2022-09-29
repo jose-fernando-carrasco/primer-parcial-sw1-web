@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fotografos', function (Blueprint $table) {
+        Schema::create('clientes', function (Blueprint $table) {
             $table->id();
             $table->string('ci')->nullable();
-            $table->text('tipo_trabajo')->nullable();
-            $table->text('experiencias')->nullable();
-            $table->text('equipos')->nullable();
+            $table->string('profesion')->nullable();
+            $table->string('estado_civil')->nullable();
+            $table->string('pasatiempos')->nullable();
             $table->string('fecha_naci')->nullable();
             $table->unsignedBigInteger('user_id')->unique();
 
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fotografos');
+        Schema::dropIfExists('clientes');
     }
 };
