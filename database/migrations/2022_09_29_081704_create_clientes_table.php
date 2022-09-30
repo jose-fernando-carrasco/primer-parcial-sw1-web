@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('estado_civil')->nullable();
             $table->string('pasatiempos')->nullable();
             $table->string('fecha_naci')->nullable();
+            $table->boolean('configurado')->default(false);
             $table->unsignedBigInteger('user_id')->unique();
 
             $table->foreign('user_id')->references('id')

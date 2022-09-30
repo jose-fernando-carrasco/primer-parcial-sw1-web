@@ -20,10 +20,17 @@ return new class extends Migration
             $table->text('experiencias')->nullable();
             $table->text('equipos')->nullable();
             $table->string('fecha_naci')->nullable();
+            $table->boolean('configurado')->default(false);
             $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('tipo_id');
 
             $table->foreign('user_id')->references('id')
                   ->on('users')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
+            $table->foreign('tipo_id')->references('id')
+                  ->on('tipos')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
 

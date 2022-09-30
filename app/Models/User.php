@@ -47,5 +47,21 @@ class User extends Authenticatable
         $telefonos = Telefono::where('user_id',$this->id)->get();
         return $telefonos;
     }
+
+    // Un usuario no puede ser los 3 a la vez, devuelve null si no es un tipo
+    public function fotografo(){
+        $fotografo = Fotografo::where('user_id',$this->id)->first();
+        return $fotografo;
+    }
+
+    public function organizador(){
+        $organizador = Organizador::where('user_id',$this->id)->first();
+        return $organizador;
+    }
+
+    public function cliente(){
+        $cliente = Cliente::where('user_id',$this->id)->first();
+        return $cliente;
+    }
     
 }
