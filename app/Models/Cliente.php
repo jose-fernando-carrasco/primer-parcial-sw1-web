@@ -23,8 +23,8 @@ class Cliente extends Model
     //Muchos a Muchos
     public function contratos(){
         $contratos = Cliente_contrato::select('contratos.*')
-                     ->join('contratos','cliente_contrato.contrato_id','=','contratos.id')
-                     ->where('cliente_contrato.cliente_id',$this->id)->get();
+                 ->join('contratos','cliente_contrato.contrato_id','=','contratos.id')
+                 ->where('cliente_contrato.cliente_id',$this->id)->get();
         return $contratos;
     }
     

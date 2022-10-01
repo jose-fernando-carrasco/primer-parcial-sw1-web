@@ -26,11 +26,12 @@ class Contrato extends Model
     }
 
     //Muchos a Muchos
-    /*public function clientes(){
-            $clientes = Cliente_contrato::select('contratos.*')
-                         ->join('clientes','cliente_contrato.cliente_id','=','clientes.id')
-                         ->where('cliente_contrato.contrato_id',$this->id)->get();
-            return $clientes;
-    }*/
+    public function clientes(){
+        $Clientes = Cliente_contrato::select('clientes.*')
+                  ->join('clientes','cliente_contrato.cliente_id','=','clientes.id')
+                  ->where('cliente_contrato.contrato_id',$this->id)->get();
+        return $Clientes;
+    }
+
 
 }
