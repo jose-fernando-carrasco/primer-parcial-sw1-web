@@ -13,20 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contratos', function (Blueprint $table) {
+        Schema::create('invitacions', function (Blueprint $table) {
             $table->id();
-            $table->text('detalle');
-            $table->text('clausulaDelEvetento');
-            $table->text('politicaCancelacion');
-            $table->text('plazoDeEntrega');
-            $table->unsignedBigInteger('tipopago_id');
-            $table->unsignedBigInteger('evento_id');
-            $table->unsignedBigInteger('fotografo_id');
             $table->unsignedBigInteger('organizador_id');
+            $table->unsignedBigInteger('evento_id');
+            $table->unsignedBigInteger('cliente_id');
             $table->boolean('estado')->default(false);
 
-            $table->foreign('tipopago_id')->references('id')
-                  ->on('tipopagos')
+            $table->foreign('organizador_id')->references('id')
+                  ->on('organizadors')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
 
@@ -35,13 +30,8 @@ return new class extends Migration
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
 
-            $table->foreign('fotografo_id')->references('id')
-                  ->on('fotografos')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
-
-            $table->foreign('organizador_id')->references('id')
-                  ->on('organizadors')
+            $table->foreign('cliente_id')->references('id')
+                  ->on('clientes')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
 
@@ -56,6 +46,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contratos');
+        Schema::dropIfExists('invitacions');
     }
 };

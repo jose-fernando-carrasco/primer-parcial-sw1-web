@@ -19,6 +19,13 @@ return new class extends Migration
             $table->text('detalle');
             $table->string('ubicacion');
             $table->string('cantpersonas');
+            $table->unsignedBigInteger('tipoevento_id');
+
+            $table->foreign('tipoevento_id')->references('id')
+                  ->on('tipoeventos')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

@@ -15,4 +15,14 @@ class Organizador extends Model
         return $user;
     }
 
+    public function contratos(){
+        $contratos = Contrato::where('organizador_id',$this->id)->get();
+        return $contratos;
+    }
+
+    public function invitaciones(){
+        $invitaciones = Invitacion::where('organizador_id',$this->id)->get();
+        return $invitaciones;
+    }
+
 }

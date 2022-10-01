@@ -19,5 +19,10 @@ class Fotografo extends Model
         $tipo = Tipo::find($this->tipo_id);
         return $tipo;
     }
+
+    public function contratos(){
+        $contratos = Contrato::where('fotografo_id',$this->id)->get();
+        return $contratos;
+    }
     
 }

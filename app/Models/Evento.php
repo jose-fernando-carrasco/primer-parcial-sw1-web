@@ -15,4 +15,14 @@ class Evento extends Model
         return $contratos;
     }
 
+    public function tipoEvento(){
+        $tipoEvento = Tipoevento::find($this->tipoevento_id);
+        return $tipoEvento;
+    }
+
+    public function invitaciones(){
+        $invitaciones = Invitacion::where('evento_id',$this->id)->get();
+        return $invitaciones;
+    }
+
 }

@@ -20,4 +20,17 @@ class Contrato extends Model
         return $evento;
     }
 
+    public function fotografo(){
+        $fotografo = Fotografo::find($this->fotografo_id);
+        return $fotografo;
+    }
+
+    //Muchos a Muchos
+    /*public function clientes(){
+            $clientes = Cliente_contrato::select('contratos.*')
+                         ->join('clientes','cliente_contrato.cliente_id','=','clientes.id')
+                         ->where('cliente_contrato.contrato_id',$this->id)->get();
+            return $clientes;
+    }*/
+
 }

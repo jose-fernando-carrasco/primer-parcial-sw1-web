@@ -19,6 +19,10 @@ class ClienteSeeder extends Seeder
         $Cliente1 = new Cliente();
         $Cliente1->user_id = 3;
         $Cliente1->save();
+
+        $Cliente2 = new Cliente();
+        $Cliente2->user_id = 4;
+        $Cliente2->save();
         
     }
 }

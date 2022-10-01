@@ -17,9 +17,10 @@ class EventoSeeder extends Seeder
     {
         $Evento1 = new Evento();
         $Evento1->titulo = "Casamiento Jose y Mia";
-        $Evento1->detalle = "Estimado Sr. me comunico con usted para solicitar un servicio de fotografo para el matrimonio del joven Jose con la señorita mia";
+        $Evento1->detalle = "Matrimonio del joven Jose con la señorita mia";
         $Evento1->ubicacion = "Av. San Aurelio / Calle 13 / Nro 159";
         $Evento1->cantpersonas = "100";
+        $Evento1->tipoevento_id = 1;
         $Evento1->save();
 
     }
