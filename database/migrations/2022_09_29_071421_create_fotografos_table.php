@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('fecha_naci')->nullable();
             $table->boolean('configurado')->default(false);
             $table->unsignedBigInteger('user_id')->unique();
-            $table->unsignedBigInteger('tipo_id');
+            $table->unsignedBigInteger('tipo_id')->default(1);//particular
 
             $table->foreign('user_id')->references('id')
                   ->on('users')

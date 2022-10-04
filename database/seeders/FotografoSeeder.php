@@ -18,7 +18,7 @@ class FotografoSeeder extends Seeder
         //Idalia es Fotografo
         $fotografo1 = new Fotografo();
         $fotografo1->user_id = 2;
-        $fotografo1->tipo_id = 1;//particular
+        //$fotografo1->tipo_id = 1;//particular
         $fotografo1->save();
 
     }
