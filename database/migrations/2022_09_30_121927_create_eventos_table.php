@@ -20,9 +20,15 @@ return new class extends Migration
             $table->string('ubicacion');
             $table->string('cantpersonas');
             $table->unsignedBigInteger('tipoevento_id');
+            $table->unsignedBigInteger('organizador_id');
 
             $table->foreign('tipoevento_id')->references('id')
                   ->on('tipoeventos')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
+            $table->foreign('organizador_id')->references('id')
+                  ->on('organizadors')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
 

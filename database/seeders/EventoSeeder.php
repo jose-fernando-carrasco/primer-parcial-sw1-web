@@ -21,6 +21,7 @@ class EventoSeeder extends Seeder
         $Evento1->ubicacion = "Av. San Aurelio / Calle 13 / Nro 159";
         $Evento1->cantpersonas = "100";
         $Evento1->tipoevento_id = 1;
+        $Evento1->organizador_id = 1;//Fernando
         $Evento1->save();
 
     }
