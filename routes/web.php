@@ -29,3 +29,6 @@ Route::middleware([
 });
 
 Route::resource('eventos',EventoController::class);
+Route::get('home', function () {
+    return view('home');
+})->name('home');
