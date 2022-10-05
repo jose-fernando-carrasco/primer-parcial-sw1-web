@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="form-row center">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label class="font-weight-bold">Fotografo</label>
                         <select name="fotografo_id" class="form-control">
                             @foreach ($Fotografos as $Fotografo)
@@ -85,9 +85,7 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
 
-                <div class="form-row">
                     <div class="form-group col-md-4">
                         <label class="font-weight-bold">Tipo de Pago</label>
                         <select name="tipopago_id" class="form-control">
@@ -96,13 +94,24 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group col-md-5">
-                        <label class="font-weight-bold">Organizador</label>
-                        <input type="text" class="form-control" name="nombreOrganizador" value="{{auth()->user()->name}}" readonly>
-                        <input type="hidden" class="form-control" name="organizador_id" value="{{auth()->user()->id}}" readonly>
-                    </div>
-                    
+
                 </div>
+
+                <div class="form-row">
+                    <input type="hidden" class="form-control" name="organizador_id" value="{{auth()->user()->id}}" readonly>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="font-weight-bold">Seleccionar Clientes</label>
+                        <select name="seleU[]" class="custom-select form-group" multiple>
+                            @foreach ($clientes as $cliente)
+                               <option  value="{{$cliente->id}}">{{$cliente->name}}</option>
+                            @endforeach    
+                        </select>
+                    </div>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Crear Evento</button>
                 <a href="{{route('home')}}" class="btn btn-danger">Salir</a>
             </form>
@@ -126,4 +135,5 @@
             })
         </script>
     @endif
+
 </html>

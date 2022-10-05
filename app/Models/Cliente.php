@@ -28,4 +28,9 @@ class Cliente extends Model
         return $contratos;
     }
     
+    public function getClientes(){
+        $getClientes = Cliente::select('clientes.id','users.name')
+                                ->join('users','clientes.user_id','=','users.id')->get();
+        return $getClientes;
+    }
 }

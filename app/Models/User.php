@@ -59,4 +59,19 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function fotografo(){
+        $fotografo = Fotografo::where('user_id',$this->id)->first();
+        return $fotografo;
+    }
+
+    public function organizador(){
+        $organizador = Organizador::where('user_id',$this->id)->first();
+        return $organizador;
+    }
+
+    public function cliente(){
+        $cliente = Cliente::where('user_id',$this->id)->first();
+        return $cliente;
+    }
 }
