@@ -24,5 +24,11 @@ class Fotografo extends Model
         $contratos = Contrato::where('fotografo_id',$this->id)->get();
         return $contratos;
     }
+
+    public function getFotografos(){
+        $fotografos = Fotografo::select('fotografos.id','users.name')
+                                ->join('users','fotografos.user_id','=','users.id')->get();
+        return $fotografos;
+    }
     
 }

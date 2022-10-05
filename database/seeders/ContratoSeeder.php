@@ -17,7 +17,7 @@ class ContratoSeeder extends Seeder
     {
         $Contrato1 = new Contrato();
         $Contrato1->detalle = "Estimado Sr. me comunico con usted para solicitar un servicio de fotografo para el matrimonio del joven Jose con la señorita mia";
-        $Contrato1->clausulaDelEvetento = "No distraerse durante la entrada de los novios";
+        $Contrato1->clausulaDelEvento = "No distraerse durante la entrada de los novios";
         $Contrato1->politicaCancelacion = "Para que se le cancele debera cumplir con sacar las mejores fotos a la pareja";
         $Contrato1->plazoDeEntrega = "Se le efectuara el pago 1 dia despues de recibir las fotos";
         $Contrato1->tipopago_id = 1;

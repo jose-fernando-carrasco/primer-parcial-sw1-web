@@ -27,12 +27,12 @@
             <form class="border p-3 form" action="{{route('contratos.store')}}" method="POST">
                 @csrf
                 <div class="form-group col-12">
-                    <label class="h2 form-row center">Contrato</label>
+                    <label class="h2">Contrato</label>
                 </div>
 
                 <div class="form-row center">
                     <div class="form-group col-md-6">
-                        <label>Evento</label>
+                        <label class="font-weight-bold">Evento</label>
                         <select name="evento_id" class="form-control">
                             @foreach ($Eventos as $Evento)
                                <option  value="{{$Evento->id}}" selected>{{$Evento->titulo}}</option>
@@ -44,7 +44,7 @@
                 <div class="form-row center">
                     
                     <div class="form-group col-md-12">
-                        <label>Detalle del Contrato</label>
+                        <label class="font-weight-bold">Detalle del Contrato</label>
                         <textarea class="form-control" name="detalle">{{old('detalle')}}</textarea>
                         @error('detalle')
                             <small class="text-danger">{{$message}}</small>
@@ -54,41 +54,50 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Clausula del Contrato</label>
+                    <label class="font-weight-bold">Clausula del Contrato</label>
                     <input type="text" class="form-control" name="clausulaDelEvento" value="{{old('clausulaDelEvento')}}">
                     @error('clausulaDelEvento')
                             <small class="text-danger">{{$message}}</small>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>Politica de Cancelacion</label>
+                    <label class="font-weight-bold">Politica de Cancelacion</label>
                     <input type="text" class="form-control" name="politicaCancelacion" value="{{old('politicaCancelacion')}}">
                     @error('politicaCancelacion')
                             <small class="text-danger">{{$message}}</small>
                     @enderror
                 </div>
 
+                <div class="form-group">
+                    <label class="font-weight-bold">Plazo de Entrega</label>
+                    <input type="text" class="form-control" name="plazoDeEntrega" value="{{old('plazoDeEntrega')}}">
+                    @error('plazoDeEntrega')
+                            <small class="text-danger">{{$message}}</small>
+                    @enderror
+                </div>
+
                 <div class="form-row center">
                     <div class="form-group col-md-6">
-                        <label>Fotografo</label>
+                        <label class="font-weight-bold">Fotografo</label>
                         <select name="fotografo_id" class="form-control">
                             @foreach ($Fotografos as $Fotografo)
-                               <option  value="{{$Fotografo->id}}" selected>{{$Fotografo->titulo}}</option>
+                               <option  value="{{$Fotografo->id}}" selected>{{$Fotografo->name}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-md-2">
-                        <label>Capacidad</label>
-                        <input type="text" class="form-control" name="cantpersonas" value="{{old('cantpersonas')}}">
-                        @error('cantpersonas')
-                            <small class="text-danger">{{$message}}</small>
-                        @enderror
+                    <div class="form-group col-md-4">
+                        <label class="font-weight-bold">Tipo de Pago</label>
+                        <select name="tipopago_id" class="form-control">
+                            @foreach ($TiposPagos as $TiposPago)
+                               <option  value="{{$TiposPago->id}}" selected>{{$TiposPago->tipodepago}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group col-md-5">
-                        <label>Organizador</label>
+                        <label class="font-weight-bold">Organizador</label>
                         <input type="text" class="form-control" name="nombreOrganizador" value="{{auth()->user()->name}}" readonly>
                         <input type="hidden" class="form-control" name="organizador_id" value="{{auth()->user()->id}}" readonly>
                     </div>
@@ -111,7 +120,7 @@
             Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Evento creado existosamente',
+            title: 'Contrato Enviado',
             showConfirmButton: false,
             timer: 1500
             })

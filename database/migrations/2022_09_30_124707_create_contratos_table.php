@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
             $table->text('detalle');
-            $table->text('clausulaDelEvetento');
+            $table->text('clausulaDelEvento');
             $table->text('politicaCancelacion');
             $table->text('plazoDeEntrega');
             $table->unsignedBigInteger('tipopago_id');

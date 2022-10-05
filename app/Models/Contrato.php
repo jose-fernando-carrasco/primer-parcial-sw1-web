@@ -9,6 +9,7 @@ class Contrato extends Model
 {
     use HasFactory;
     protected $table = "contratos";
+    protected $fillable = ['evento_id','detalle','clausulaDelEvento','politicaCancelacion','plazoDeEntrega','fotografo_id','tipopago_id','organizador_id'];
 
     public function tipoDePago(){
         $tipodepago = Tipopago::find($this->tipopago_id);
