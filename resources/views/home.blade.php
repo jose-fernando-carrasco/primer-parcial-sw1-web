@@ -348,7 +348,8 @@
 				<ul class="navbar-nav ml-auto">
                     <li><a href="#" class="nav-item nav-link active">Administrar Usuarios</a></li>
 					<li><a href="{{route('eventos.create')}}" class="nav-item nav-link">Crear Evento</a></li>
-					<li><a href="#" class="nav-item nav-link">Invitar a Clientes</a></li>
+					<li><a href="{{route('contratos.create')}}" class="nav-item nav-link">Contratar Fotografos</a></li>
+                    <li><a href="#" class="nav-item nav-link">Invitar a Clientes</a></li>
 					
 					<li><a href="#" class="nav-item nav-link">Contactanos</a></li>
 

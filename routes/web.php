@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\EventoController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,8 @@ Route::middleware([
 });
 
 Route::resource('eventos',EventoController::class);
+Route::resource('contratos',ContratoController::class);
+
 Route::get('home', function () {
     return view('home');
 })->name('home');
