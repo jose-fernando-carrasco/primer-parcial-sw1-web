@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('ubicacion');
             $table->string('cantpersonas');
             $table->unsignedBigInteger('tipoevento_id');
-            $table->unsignedBigInteger('organizador_id');
+            $table->unsignedBigInteger('organizador_id')->nullable();//prueba el nul
 
             $table->foreign('tipoevento_id')->references('id')
                   ->on('tipoeventos')
