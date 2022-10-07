@@ -26,4 +26,9 @@ class Evento extends Model
         return $invitaciones;
     }
 
+    public function estado(){
+        $estado = Estadoevento::find($this->estadoevento_id);
+        return $estado;
+    }
+
 }

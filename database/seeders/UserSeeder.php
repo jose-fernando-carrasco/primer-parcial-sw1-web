@@ -46,5 +46,27 @@ class UserSeeder extends Seeder
         $user4->tipoCuenta = 3;
         $user4->save();
 
+        $user5 = new User();
+        $user5->name = "chimuelo";
+        $user5->email = "chi@gmail.com";
+        $user5->password = bcrypt("123");
+        $user5->tipoCuenta = 3;
+        $user5->save();
+
+
+        $user6 = new User();
+        $user6->name = "panfilo";
+        $user6->email = "pan@gmail.com";
+        $user6->password = bcrypt("123");
+        $user6->tipoCuenta = 3;
+        $user6->save();
+
+        $user7 = new User();
+        $user7->name = "macario";
+        $user7->email = "mac@gmail.com";
+        $user7->password = bcrypt("123");
+        $user7->tipoCuenta = 3;
+        $user7->save();
+
     }
 }

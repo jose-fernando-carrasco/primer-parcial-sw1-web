@@ -28,17 +28,21 @@
             <form class="border p-3 form" action="{{route('invitaciones.store')}}" method="POST">
                 @csrf
                 <div class="form-group col-12">
-                    <label class="h2">Invitacion</label>
+                    <label class="h2">Creando Invitacion</label>
                 </div>
 
                 <div class="form-row center">
                     <div class="form-group col-md-12">
                         <label class="font-weight-bold">Evento</label>
-                        <select name="evento_id" class="form-control">
-                            @foreach ($Eventos as $Evento)
-                               <option  value="{{$Evento->id}}" selected>{{$Evento->titulo}}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" class="form-control" name="evento_titulo" value="{{$Evento->titulo}}" readonly>
+                        <input type="hidden" class="form-control" name="evento_id" value="{{$Evento->id}}" readonly>
+                    </div>
+                </div>
+
+                <div class="form-row center">
+                    <div class="form-group col-md-12">
+                        <label class="font-weight-bold">Lugar</label>
+                        <input type="text" class="form-control" name="evento_lugar" value="{{$Evento->ubicacion}}" readonly>
                     </div>
                 </div>
 

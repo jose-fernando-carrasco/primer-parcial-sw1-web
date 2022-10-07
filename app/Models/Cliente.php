@@ -33,4 +33,30 @@ class Cliente extends Model
                                 ->join('users','clientes.user_id','=','users.id')->get();
         return $getClientes;
     }
+
+    public function getClientesLibres(Evento $Evento){
+
+        //-------------Clientes que ya estan invitados---------------------------
+        $IDClientes = Invitacion::select('invitacions.cliente_id')
+                                    ->join('eventos','invitacions.evento_id','=','eventos.id')
+                                    ->where('invitacions.evento_id',$Evento->id)->get();
+        
+        $Clientes1 = Cliente::select('clientes.id')
+                            ->whereIn('clientes.id',$IDClientes)->get();
+       
+        //-----------------clientes que ya estan contratados--------------------------
+        $Contratos = Contrato::select('contratos.id')
+                                ->join('eventos','contratos.evento_id','=','eventos.id')
+                                ->where('contratos.evento_id',$Evento->id)->get();
+        
+        $Clientes2 = Cliente_contrato::select('cliente_contrato.cliente_id')
+                                ->whereIn('cliente_contrato.contrato_id',$Contratos)->get(); 
+        
+        //----------------------finalmente clientes libres--------------------------------
+        $clientes = Cliente::whereNotIn('clientes.id',$Clientes1)
+                            ->whereNotIn('clientes.id',$Clientes2)
+                            ->get();
+                    
+        return $clientes; 
+    }
 }

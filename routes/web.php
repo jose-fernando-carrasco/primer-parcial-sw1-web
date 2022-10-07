@@ -37,5 +37,6 @@ Route::get('home', function () {
 
 Route::resource('eventos',EventoController::class);
 Route::resource('contratos',ContratoController::class);
-Route::resource('invitaciones',InvitacionController::class);
+Route::get('invitaciones/create/{Evento}',[InvitacionController::class,'create'])->name('invitaciones.create');
+Route::post('invitaciones/store',[InvitacionController::class,'store'])->name('invitaciones.store');
 

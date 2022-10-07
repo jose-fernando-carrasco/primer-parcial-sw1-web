@@ -18,7 +18,7 @@ class InvitacionSeeder extends Seeder
         $Invitacion1 = new Invitacion();
         $Invitacion1->organizador_id = 1;
         $Invitacion1->evento_id = 1;
-        $Invitacion1->cliente_id = 1;
+        $Invitacion1->cliente_id = 2;
         $Invitacion1->save();
 
     }

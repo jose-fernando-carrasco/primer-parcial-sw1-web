@@ -347,19 +347,25 @@
 			<div id="main-nav" class="collapse navbar-collapse">
 				<ul class="navbar-nav ml-auto">
                     <li><a href="#" class="nav-item nav-link active">Administrar Usuarios</a></li>
-					<li><a href="{{route('eventos.create')}}" class="nav-item nav-link">Crear Evento</a></li>
 
+                    
+                    <li class="dropdown">
+						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Eventos</a>
+						<div class="dropdown-menu">
+                            <a href="{{route('eventos.create')}}" class="nav-item nav-link">Crear Evento</a>
+                            <a href="{{route('eventos.index')}}" class="dropdown-item">Ver Eventos</a>
+						</div>
+					</li>
 
                     <li class="dropdown">
 						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Contratos</a>
 						<div class="dropdown-menu">
 							<a href="{{route('contratos.create')}}" class="dropdown-item">Contratar Fotografos</a>
                             <a href="{{route('contratos.index')}}" class="dropdown-item">Ver Contratos</a>
-							
 						</div>
 					</li>
 
-                    <li><a href="{{route('invitaciones.create')}}" class="nav-item nav-link">Invitar a Clientes</a></li>
+                    {{-- <li><a href="{{route('invitaciones.create')}}" class="nav-item nav-link">Invitar a Clientes</a></li> --}}
 					
 					<li><a href="#" class="nav-item nav-link">Contactanos</a></li>
 
