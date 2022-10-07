@@ -359,7 +359,7 @@
 						</div>
 					</li>
 
-                    <li><a href="#" class="nav-item nav-link">Invitar a Clientes</a></li>
+                    <li><a href="{{route('invitaciones.create')}}" class="nav-item nav-link">Invitar a Clientes</a></li>
 					
 					<li><a href="#" class="nav-item nav-link">Contactanos</a></li>
 

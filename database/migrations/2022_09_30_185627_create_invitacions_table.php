@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('organizador_id');
             $table->unsignedBigInteger('evento_id');
             $table->unsignedBigInteger('cliente_id');
-            $table->boolean('estado')->default(false);
+            $table->unsignedBigInteger('estadoinvitacion_id')->default(1);
 
             $table->foreign('organizador_id')->references('id')
                   ->on('organizadors')
@@ -32,6 +32,11 @@ return new class extends Migration
 
             $table->foreign('cliente_id')->references('id')
                   ->on('clientes')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
+            $table->foreign('estadoinvitacion_id')->references('id')
+                  ->on('estadoinvitacions')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
 
