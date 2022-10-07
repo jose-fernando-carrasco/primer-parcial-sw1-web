@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 class ContratoController extends Controller
 {
-
+    //el commit 20 es antes de dañinear con S3
     public function create(){// solo organizadores
         $Eventos    = Evento::all();
         $TiposPagos = Tipopago::all();
