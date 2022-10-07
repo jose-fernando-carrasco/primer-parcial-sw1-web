@@ -27,9 +27,15 @@ class Contrato extends Model
     }
 
     //Muchos a Muchos
-    public function clientes(){
+    /* public function clientes(){
         $Clientes = Cliente_contrato::select('clientes.*')
                   ->join('clientes','cliente_contrato.cliente_id','=','clientes.id')
+                  ->where('cliente_contrato.contrato_id',$this->id)->get();
+        return $Clientes;
+    } */
+
+    public function clientes(){
+        $Clientes = Cliente::select('clientes.*')->join('cliente_contrato','clientes.id','=','cliente_contrato.cliente_id')
                   ->where('cliente_contrato.contrato_id',$this->id)->get();
         return $Clientes;
     }
@@ -37,6 +43,20 @@ class Contrato extends Model
     public function estado(){
         $Estado = Estado::find($this->estado_id);
         return $Estado;
+    }
+
+    public function getContratoCIndex(){
+        $user = User::find(auth()->user()->id);
+        if(auth()->user()->tipoCuenta == 1){//organizador
+            $contratos = Contrato::where('organizador_id',$user->organizador()->id)->get();
+        }else{
+            if(auth()->user()->tipoCuenta == 2){//Fotografo
+                $contratos = Contrato::where('fotografo_id',$user->fotografo()->id)->get();
+            }else{
+                $contratos = null;
+            }
+        }
+       return $contratos;
     }
 
 }

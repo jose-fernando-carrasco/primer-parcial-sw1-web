@@ -52,11 +52,12 @@
                     <td>{{$contrato->evento()->titulo}}</td>
                     <td>{{$contrato->fotografo()->user()->name}}</td>
                     <td>{{$contrato->estado()->name}}</td>
-                    <td>61</td>
+                    <td>
+                        <a href="{{route('contratos.show',$contrato->id)}}" class="btn btn-success btn-sm">ver</a>
+                        <a href="" class="btn btn-warning btn-sm">Eliminar</a>
+                    </td>
                 </tr>
             @endforeach
-            
-            
         </tbody>
         <tfoot>
             <tr>
