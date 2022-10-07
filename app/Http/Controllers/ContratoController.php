@@ -8,13 +8,14 @@ use App\Models\Cliente_contrato;
 use App\Models\Contrato;
 use App\Models\Evento;
 use App\Models\Fotografo;
+use App\Models\Organizador;
 use App\Models\Tipopago;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class ContratoController extends Controller
 {
-    public function create(){
+    public function create(){// solo organizadores
         $Eventos    = Evento::all();
         $TiposPagos = Tipopago::all();
         $Fotografos = (new Fotografo())->getFotografos();
@@ -23,25 +24,26 @@ class ContratoController extends Controller
     }
 
     public function store(StoreContrato $request){
+        //return $request;
         (new Cliente_contrato())->cargarTabla($request);
         return redirect()->route('contratos.create')->with('info','ok');
     }
 
     public function index(){
+
+        $user = User::find(auth()->user()->id);
         if(auth()->user()->tipoCuenta == 1){//organizador
-            $user = User::find(auth()->user()->id);
-            $con = Contrato::where('organizador_id',$user->organizador()->id)->get();
-            return $con;
+            $contratos = Contrato::where('organizador_id',$user->organizador()->id)->get();
+            //return $contratos;
         }
 
         if(auth()->user()->tipoCuenta == 2){//Fotografo
-            $user = User::find(auth()->user()->id);
-            $con = Contrato::where('fotografo_id',$user->fotografo()->id)->get();
-            return $con;
+            $contratos = Contrato::where('fotografo_id',$user->fotografo()->id)->get();
+            return $contratos;
         }
         //pendiente
         
-        return view('contratos.index');
+        return view('contratos.index',compact('contratos'));
     }
 
 }

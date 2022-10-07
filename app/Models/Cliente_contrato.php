@@ -23,6 +23,7 @@ class Cliente_contrato extends Model
         $Contrato->evento_id = $request->evento_id;
         $Contrato->fotografo_id = $request->fotografo_id;
         $Contrato->organizador_id = $request->organizador_id;
+        //$Contrato->estado_id = 1;//estado pendiente
         $Contrato->save();
 
         for($i=0; $i < count($request->seleU); $i++) { 

@@ -112,7 +112,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Crear Evento</button>
+                <button type="submit" class="btn btn-primary">Enviar Contrato</button>
                 <a href="{{route('home')}}" class="btn btn-danger">Salir</a>
             </form>
     </div>

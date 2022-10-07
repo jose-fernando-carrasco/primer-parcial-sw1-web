@@ -24,6 +24,7 @@ class ContratoSeeder extends Seeder
         $Contrato1->evento_id = 1;
         $Contrato1->fotografo_id = 1;
         $Contrato1->organizador_id = 1;
+        //$Contrato1->estado_id = 1;
         $Contrato1->save();
 
         /*

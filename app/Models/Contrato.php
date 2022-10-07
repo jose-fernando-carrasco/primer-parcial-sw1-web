@@ -34,5 +34,9 @@ class Contrato extends Model
         return $Clientes;
     }
 
+    public function estado(){
+        $Estado = Estado::find($this->estado_id);
+        return $Estado;
+    }
 
 }
