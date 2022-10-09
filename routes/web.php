@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CatalogoController;
 use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\InvitacionController;
@@ -37,6 +38,7 @@ Route::get('home', function () {
 
 Route::resource('eventos',EventoController::class);
 Route::resource('contratos',ContratoController::class);
+Route::resource('catalogos',CatalogoController::class);
 Route::get('invitaciones/create/{Evento}',[InvitacionController::class,'create'])->name('invitaciones.create');
 Route::post('invitaciones/store',[InvitacionController::class,'store'])->name('invitaciones.store');
 

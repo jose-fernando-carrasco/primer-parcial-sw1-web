@@ -352,10 +352,12 @@
                     <li class="dropdown">
 						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Eventos</a>
 						<div class="dropdown-menu">
-                            <a href="{{route('eventos.create')}}" class="nav-item nav-link">Crear Evento</a>
+                            <a href="{{route('eventos.create')}}" class="dropdown-item">Crear Evento</a>
                             <a href="{{route('eventos.index')}}" class="dropdown-item">Ver Eventos</a>
 						</div>
 					</li>
+
+                    <li><a href="{{route('catalogos.index')}}" class="nav-item nav-link active">Catalogos</a></li>
 
                     <li class="dropdown">
 						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Contratos</a>
