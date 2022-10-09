@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TelefonoSeeder::class);
         $this->call(OrganizadorSeeder::class);
         $this->call(FotografoSeeder::class);
+        $this->call(CatalogoSeeder::class);
         $this->call(ClienteSeeder::class);
         $this->call(TipopagoSeeder::class);
         $this->call(TipoeventoSeeder::class);

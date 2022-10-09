@@ -21,5 +21,9 @@ class FotografoSeeder extends Seeder
         //$fotografo1->tipo_id = 1;//particular
         $fotografo1->save();
 
+        $fotografo2 = new Fotografo();
+        $fotografo2->user_id = 8;
+        $fotografo2->save();
+
     }
 }

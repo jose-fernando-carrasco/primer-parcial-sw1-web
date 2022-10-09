@@ -7,26 +7,111 @@
     <title>Index Catalogos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
+
 <style>
     .card-img-top{
-        height: 300px;
-        width: 300px;
+        height: 450px;
+        width: 600px;
     }
+
+    .container-fluid {
+        margin-top: 4;
+        height: 200px;
+        width: 1500px;
+    }
+
+    body{
+        margin-top:20px;
+    }
+
+    .events_area {
+        padding: 50px 0 20px;
+        background: #002347;
+    }
+
+    @media (max-width: 991px) {
+        .events_area {
+            padding: 70px 0;
+        }
+    }
+
+    .events_area .event-link {
+        color: #fdc632;
+        font-size: 13px;
+        text-transform: uppercase;
+    }
+
+    .events_area .event-link img {
+        margin-left: 5px;
+        display: inline-block;
+    }
+
+    .single_event {
+        margin-bottom: 30px;
+    }
+
+    .single_event .event_thumb {
+        overflow: hidden;
+    }
+
+    .single_event .event_thumb img {
+        -webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+    }
+
+    .single_event .event_details {
+        background: rgba(0, 35, 71, 0.5);
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 275px;
+        padding: 30px 25px;
+        color: #ffffff;
+    }
+
+    .single_event .event_details .date {
+        color: #ffffff;
+        padding-right: 15px;
+        border-right: 2px solid #fff;
+        font-family: "Rubik", sans-serif;
+        font-size: 14px;
+    }
+
+    .single_event .event_details .date span {
+        display: block;
+        color: #fdc632;
+        font-size: 28px;
+        font-weight: 500;
+    }
+
+    .single_event .event_details .time-location {
+        padding-left: 15px;
+        font-size: 14px;
+    }
+
+    .single_event .event_details .time-location p {
+        margin-bottom: 0px;
+    }
+
+    .single_event .event_details .time-location p span {
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .single_event:hover img {
+        transform: scale(1.1);
+    }
+
+    .single_event:hover h4 a {
+        color: #fdc632;
+    }
+
 </style>
+
 <body>
-    <h1>Index Catalogos</h1>
-    @if (session('info'))
-        <div  class="mensaje-sesion">
-            <strong>{{ session('info') }}</strong>
-        </div>
-    @endif
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-        Crear Catalogo
-    </button>
-
-    {{-- <a href="{{route('catalogos.create')}}">Mostrar</a> --}}
   
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -60,7 +145,9 @@
                     </div>
 
                     <div class="form-group">{{-- solo Los fotografos pueden crear catalogos --}}
-                        <input type="hidden" class="form-control" name="fotografo_id" value="{{auth()->user()->fotografo()->id}}">
+                        @if(auth()->user()->tipoCuenta == 2)
+                           <input type="hidden" class="form-control" name="fotografo_id" value="{{auth()->user()->fotografo()->id}}">
+                        @endif
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -72,38 +159,54 @@
         </div>
     </div>
 
+    <div class="d-flex justify-content-center">
+        <h1 class="font-weight-bold">Catalogos De los Fotografo</h1>
+    </div>
 
-    {{-- <section>
-        @foreach ($catalogos as $catalogo)
-            <div class="card" style="width: 20rem;">
-                <img src="{{$catalogo->url}}" class="card-img-top img-fluid" alt="">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        @endforeach
-        
-    </section> --}}
-
-
-
-
-    @foreach ($catalogos as $catalogo)
-    <div class="row row-cols-1 row-cols-md-2">
-            <div class="col mb-4">
-                <div class="card h-20">
-                    <img src="{{$catalogo->url}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ti-icons@0.1.2/css/themify-icons.css">
+    <div class="container-fluid">
+        <div class="events_area"> 
+            <div class="container">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                    Crear Catalogo
+                </button>
+                <a href="{{route('home')}}" class="btn btn-danger">Volver</a>
+                
+                {{-- <div><label>  </label></div> --}}
+                @foreach ($fotografos as $fotografo)
+                    <div class="d-flex justify-content-center">
+                        <h1 class="font-weight-bold text-light">{{$fotografo->user()->name}}</h1>
                     </div>
-                </div>
-            </div>
-      </div>
 
-      @endforeach
+                    <div class="row">
+                        @foreach ($fotografo->catalogos() as $catalogo)
+                            <div class="col-lg-6 col-md-6">
+                                <div class="single_event position-relative">
+                                    <div class="event_thumb">
+                                        <img src="{{$catalogo->url}}" class="card-img-top" />
+                                    </div>
+                                    <div class="event_details">
+                                        <div class="d-flex mb-4">
+                                            <div class="date"><span>{{date("d", $catalogo->cred_at)}}</span>{{date("F", mktime(0, 0, 0, date("m", $catalogo->cred_at), 10));}}</div>
+                                            <div class="time-location">
+                                                <p><span class="ti-time mr-2"></span> {{date("H", $catalogo->cred_at).':'.date("i", $catalogo->cred_at)}}</p>
+                                                <p><span class="ti-location-pin mr-2"></span> Santa Cruz</p>
+                                            </div>
+                                        </div>
+                                        <h2>{{$catalogo->titulo}}</h2>
+                                        <p>{{$catalogo->descripcion}}</p>
+                                        <a href="#" class="btn btn-primary rounded-0 mt-3">Ver Album</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
 
 </body>
 

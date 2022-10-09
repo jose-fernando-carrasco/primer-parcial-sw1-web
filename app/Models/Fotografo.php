@@ -30,5 +30,11 @@ class Fotografo extends Model
                                 ->join('users','fotografos.user_id','=','users.id')->get();
         return $fotografos;
     }
+
+
+    public function catalogos(){
+        $catalogos = Catalogo::where('fotografo_id',$this->id)->get();
+        return $catalogos;
+    }
     
 }

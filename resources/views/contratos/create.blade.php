@@ -86,6 +86,7 @@
                         </select>
                     </div>
 
+
                     <div class="form-group col-md-4">
                         <label class="font-weight-bold">Tipo de Pago</label>
                         <select name="tipopago_id" class="form-control">

@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
 
         //Fotografo
         $user2 = new User();
-        $user2->name = "idalia";
+        $user2->name = "Idalia Carrasco";
         $user2->email = "ida@gmail.com";
         $user2->password = bcrypt("123");
         $user2->tipoCuenta = 2;
@@ -67,6 +67,14 @@ class UserSeeder extends Seeder
         $user7->password = bcrypt("123");
         $user7->tipoCuenta = 3;
         $user7->save();
+
+        //Fotografo
+        $user8 = new User();
+        $user8->name = "Julio Iglesia";
+        $user8->email = "jul@gmail.com";
+        $user8->password = bcrypt("123");
+        $user8->tipoCuenta = 2;
+        $user8->save();
 
     }
 }

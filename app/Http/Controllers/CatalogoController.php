@@ -12,10 +12,14 @@ use Illuminate\Support\Facades\Storage;
 
 class CatalogoController extends Controller
 {
-    public function index(){//solo fotgrafos
-       $fotografo = Fotografo::where('user_id',auth()->user()->id)->first();
-       $catalogos = Catalogo::where('fotografo_id',$fotografo->id)->get();
-       return view('catalogos.index',compact('catalogos'));
+    public function index(){//solo fotgrafos y organizadores
+       if(auth()->user()->tipoCuenta == 2){ 
+            $fotografos = Fotografo::where('user_id',auth()->user()->id)->get();
+       }else{ // == 1  nunca == 3
+            $fotografos = Fotografo::all();
+       }//asumimos que es organizador
+            
+        return view('catalogos.index',compact('fotografos'));
     }
 
     public function store(StoreCatalogo $request){//solo fotografos
@@ -46,7 +50,7 @@ class CatalogoController extends Controller
             return $e->getMessage() . "\n";
         }
 
-        return redirect()->route('catalogos.index')->with('info', 'La imagen se cargo a s3');
+        return redirect()->route('catalogos.index');
     }
 
     public function create(){
