@@ -372,7 +372,7 @@
 					<li><a href="#" class="nav-item nav-link">Contactanos</a></li>
 
                     <li class="dropdown">
-						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Cuenta</a>
+						<a href="#" class="nav-item nav-link" data-toggle="dropdown">{{auth()->user()->name}}</a>
 						<div class="dropdown-menu">
 							<a href="#" class="dropdown-item">Perfil</a>
                             <form action="{{ route('logout') }}" method="POST">

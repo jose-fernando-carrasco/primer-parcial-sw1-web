@@ -196,7 +196,7 @@
                                         </div>
                                         <h2>{{$catalogo->titulo}}</h2>
                                         <p>{{$catalogo->descripcion}}</p>
-                                        <a href="#" class="btn btn-primary rounded-0 mt-3">Ver Album</a>
+                                        <a href="{{route('imagenes.index',$catalogo->id)}}" class="btn btn-primary rounded-0 mt-3">Ver Album</a>
                                     </div>
                                 </div>
                             </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CatalogoController;
 use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\InvitacionController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +39,17 @@ Route::get('home', function () {
 
 Route::resource('eventos',EventoController::class);
 Route::resource('contratos',ContratoController::class);
+
 Route::resource('catalogos',CatalogoController::class);
+/* Route::get('catalogos',[CatalogoController::class,'index'])->name('catalogos.index');
+Route::post('catalogos/store',[CatalogoController::class,'store'])->name('catalogos.store');
+ */
+
+/* Route::resource('imagenes',ImagenController::class); */
+Route::get('imagenes/{id}',[ImagenController::class,'index'])->name('imagenes.index');
+Route::post('imagenes/store/{id}',[ImagenController::class,'store'])->name('imagenes.store');
+
+
 Route::get('invitaciones/create/{Evento}',[InvitacionController::class,'create'])->name('invitaciones.create');
 Route::post('invitaciones/store',[InvitacionController::class,'store'])->name('invitaciones.store');
 

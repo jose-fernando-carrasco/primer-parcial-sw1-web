@@ -53,8 +53,9 @@ class CatalogoController extends Controller
         return redirect()->route('catalogos.index');
     }
 
-    public function create(){
-        $imagenCatalogo = Catalogo::find(1);
-        return view('catalogos.show',compact('imagenCatalogo'));
-    }
+    
+
+    
+
+
 }
