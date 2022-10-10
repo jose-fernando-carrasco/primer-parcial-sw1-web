@@ -19,7 +19,8 @@ class InvitacionController extends Controller
 
     public function store(Request $request){
         (new Invitacion())->setInvitaciones($request);
-        return "Hola";
+        $Evento = Evento::find($request->evento_id);
+        return redirect()->route('invitaciones.create',compact('Evento'))->with('info','ok');
     }
 
 }

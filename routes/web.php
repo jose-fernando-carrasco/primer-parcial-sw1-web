@@ -37,14 +37,22 @@ Route::get('home', function () {
 })->name('home');
 
 
-Route::resource('eventos',EventoController::class);
-Route::resource('contratos',ContratoController::class);
+/* Route::resource('eventos',EventoController::class); */
+Route::get('eventos',[EventoController::class,'index'])->name('eventos.index');
+Route::get('eventos/create',[EventoController::class,'create'])->name('eventos.create');
+Route::post('eventos/store',[EventoController::class,'store'])->name('eventos.store');
+Route::get('eventos/generarQR',[EventoController::class,'generarQR'])->name('eventos.generarQR');
+Route::post('eventos/storeQR',[EventoController::class,'storeQR'])->name('eventos.storeQR');
+Route::get('eventos/especifico/{id}',[EventoController::class,'especifico'])->name('eventos.especifico');
 
+
+
+
+Route::resource('contratos',ContratoController::class);
 Route::resource('catalogos',CatalogoController::class);
 /* Route::get('catalogos',[CatalogoController::class,'index'])->name('catalogos.index');
 Route::post('catalogos/store',[CatalogoController::class,'store'])->name('catalogos.store');
  */
-
 /* Route::resource('imagenes',ImagenController::class); */
 Route::get('imagenes/{id}',[ImagenController::class,'index'])->name('imagenes.index');
 Route::post('imagenes/store/{id}',[ImagenController::class,'store'])->name('imagenes.store');

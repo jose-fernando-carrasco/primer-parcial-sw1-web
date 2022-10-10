@@ -9,6 +9,12 @@
 </head>
 
 <style>
+
+    .tamanito img{
+        height: 130px;
+        width: 150px;
+    }
+
     .abs-center {
         display: flex;
         align-items: center;
@@ -22,13 +28,17 @@
 </style>
 
 <body>
-    <h1>Crear Invitaciones</h1>
     <div class="container">
         <div class="abs-center">
             <form class="border p-3 form" action="{{route('invitaciones.store')}}" method="POST">
                 @csrf
-                <div class="form-group col-12">
-                    <label class="h2">Creando Invitacion</label>
+                <div class="form-group col-12 d-flex justify-content-center">
+                    <label class="h2 text-primary">CREANDO INVITACION</label>
+                </div>
+
+                {{-- QR --}}
+                <div id="myQr" class="tamanito mb-4 d-flex justify-content-center">
+          
                 </div>
 
                 <div class="form-row center">
@@ -61,6 +71,10 @@
                     <input type="hidden" class="form-control" name="organizador_id" value="{{auth()->user()->id}}" readonly>
                 </div>
 
+                <div class="form-row">
+                    <input type="hidden" class="form-control" id="url" value="{{route('eventos.especifico',$Evento->id)}}" readonly>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Enviar Invitacion</button>
                 <a href="{{route('home')}}" class="btn btn-danger">Salir</a>
             </form>
@@ -73,16 +87,27 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{{--     @if (session('info') == 'ok') 
+    @if (session('info') == 'ok') 
         <script>
             Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Contrato Enviado',
+            title: 'Invitacion Enviado',
             showConfirmButton: false,
             timer: 1500
             })
         </script>
-    @endif --}}
+    @endif
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+    const image = document.getElementById("myQr")
+    /* Mandar la ruta del evento con el id del evento en específico */
+    //const url = 'http://127.0.0.1:8000/eventos/especifico/1'
+    const url = document.getElementById("url").value;
+    console.log(url);
+    const QR = new QRCode(image)
+    QR.makeCode(url)
+</script>
 </html>

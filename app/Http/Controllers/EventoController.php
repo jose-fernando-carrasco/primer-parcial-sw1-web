@@ -7,6 +7,8 @@ use App\Models\Evento;
 use App\Models\Tipoevento;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Aws\S3\Exception\S3Exception;
+use Aws\S3\S3Client;
 
 class EventoController extends Controller
 {
@@ -27,4 +29,34 @@ class EventoController extends Controller
         return view('eventos.index',compact('Eventos'));
     }
 
+    public function generarQR(){
+        return view('eventos.show');
+    }
+
+    public function storeQR(Request $request){
+        //return $request;
+
+        try {
+            $s3Client = new S3Client([
+                'version' => 'latest',
+                'region'  => 'us-east-1'
+            ]);
+            
+            $result = $s3Client->putObject([
+                'Bucket' => 'mycontenedor23',
+                'Key' => 'Promo/'.$request->file('file')->getClientOriginalName(),
+                'Body'   => fopen($request->file('file')->getPathName(), 'r'),
+                'ACL'    => 'public-read',
+            ]);
+        
+        } catch(S3Exception $e) {
+            return $e->getMessage() . "\n";
+        }
+
+        return redirect()->route('eventos.generarQR');
+    }
+
+    public function especifico($id){
+         return view('eventos.especifico');
+    }
 }

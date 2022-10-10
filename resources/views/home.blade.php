@@ -347,7 +347,7 @@
 			<div id="main-nav" class="collapse navbar-collapse">
 				<ul class="navbar-nav ml-auto">
                     <li><a href="#" class="nav-item nav-link active">Administrar Usuarios</a></li>
-
+                    <li><a href="{{route('eventos.generarQR')}}" class="nav-item nav-link active">Crear QR</a></li>
                     
                     <li class="dropdown">
 						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Eventos</a>
