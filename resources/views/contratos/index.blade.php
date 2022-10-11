@@ -30,13 +30,14 @@
 </style>
 
 <body>
-     <h1>Index Contratos</h1>
+     {{-- <h1>Index Contratos</h1> --}}
     
 
     <div class="card abs-center">
         <div class="card_body absX">
+    <h1 class="d-flex justify-content-center">CONTRATOS</h1>
 
-
+    <a href="{{route('home')}}" class="btn btn-danger mb-4">Salir</a>
     <table id="Contratos" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -53,8 +54,12 @@
                     <td>{{$contrato->fotografo()->user()->name}}</td>
                     <td>{{$contrato->estado()->name}}</td>
                     <td>
-                        <a href="{{route('contratos.show',$contrato->id)}}" class="btn btn-success btn-sm">ver</a>
-                        <a href="" class="btn btn-warning btn-sm">Eliminar</a>
+                        <a href="{{route('contratos.show',$contrato->id)}}" class="btn btn-success">ver</a>
+                        <form action="{{route('contratos.eliminar',$contrato)}}" method="POST" class="btn btn-warning btn-sm">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-warning btn-sm">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

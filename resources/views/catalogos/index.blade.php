@@ -167,11 +167,14 @@
     <div class="container-fluid">
         <div class="events_area"> 
             <div class="container">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                    Crear Catalogo
-                </button>
-                <a href="{{route('home')}}" class="btn btn-danger">Volver</a>
+                @can('catalogos.store')
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                        crear Catalogo
+                    </button>
+                @endcan
+
+                <a href="{{route('home')}}" class="btn btn-danger">salir</a>
                 
                 {{-- <div><label>  </label></div> --}}
                 @foreach ($fotografos as $fotografo)

@@ -20,6 +20,7 @@ class EventoSeeder extends Seeder
         $Evento1->detalle = "Matrimonio del joven Jose con la señorita mia";
         $Evento1->ubicacion = "Av. San Aurelio / Calle 13 / Nro 159";
         $Evento1->cantpersonas = "100";
+        $Evento1->url ="https://mycontenedor23.s3.amazonaws.com/Organizadores/Jose+Fernando/Casamiento+Jose+y+Mia/matrimonio.jpg";
         $Evento1->tipoevento_id = 1;
         $Evento1->organizador_id = 1;//Fernando
         $Evento1->save();

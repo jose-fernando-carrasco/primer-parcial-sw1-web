@@ -48,10 +48,10 @@ class Contrato extends Model
     public function getContratoCIndex(){
         $user = User::find(auth()->user()->id);
         if(auth()->user()->tipoCuenta == 1){//organizador
-            $contratos = Contrato::where('organizador_id',$user->organizador()->id)->get();
+            $contratos = Contrato::where('organizador_id',$user->organizador()->id)->where('eliminado',false)->get();
         }else{
             if(auth()->user()->tipoCuenta == 2){//Fotografo
-                $contratos = Contrato::where('fotografo_id',$user->fotografo()->id)->get();
+                $contratos = Contrato::where('fotografo_id',$user->fotografo()->id)->where('eliminado',false)->get();
             }else{
                 $contratos = null;
             }

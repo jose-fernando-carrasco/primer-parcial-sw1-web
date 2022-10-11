@@ -9,6 +9,7 @@
 </head>
 
 <style>
+
     .abs-center {
         display: flex;
         align-items: center;

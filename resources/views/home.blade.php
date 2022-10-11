@@ -346,23 +346,30 @@
 			
 			<div id="main-nav" class="collapse navbar-collapse">
 				<ul class="navbar-nav ml-auto">
-                    <li><a href="#" class="nav-item nav-link active">Administrar Usuarios</a></li>
-                    <li><a href="{{route('eventos.generarQR')}}" class="nav-item nav-link active">Crear QR</a></li>
+                    @can('users.index')
+                       <li><a href="{{route('users.index')}}" class="nav-item nav-link active">Administrar Usuarios</a></li>
+                    @endcan
                     
                     <li class="dropdown">
-						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Eventos</a>
-						<div class="dropdown-menu">
-                            <a href="{{route('eventos.create')}}" class="dropdown-item">Crear Evento</a>
-                            <a href="{{route('eventos.index')}}" class="dropdown-item">Ver Eventos</a>
-						</div>
+                        @can('eventos.index')
+                            <a href="#" class="nav-item nav-link" data-toggle="dropdown">Eventos</a>
+                            <div class="dropdown-menu">
+                                <a href="{{route('eventos.create')}}" class="dropdown-item">Crear Evento</a>
+                                <a href="{{route('eventos.index')}}" class="dropdown-item">Administrar Eventos</a>
+                            </div>
+                        @endcan
 					</li>
 
-                    <li><a href="{{route('catalogos.index')}}" class="nav-item nav-link active">Catalogos</a></li>
+                    @can('catalogos.index')
+                       <li><a href="{{route('catalogos.index')}}" class="nav-item nav-link active">Catalogos</a></li>
+                    @endcan
 
                     <li class="dropdown">
 						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Contratos</a>
 						<div class="dropdown-menu">
-							<a href="{{route('contratos.create')}}" class="dropdown-item">Contratar Fotografos</a>
+                            @can('contratos.create')
+							   <a href="{{route('contratos.create')}}" class="dropdown-item">Contratar Fotografos</a>
+                            @endcan
                             <a href="{{route('contratos.index')}}" class="dropdown-item">Ver Contratos</a>
 						</div>
 					</li>
@@ -374,7 +381,7 @@
                     <li class="dropdown">
 						<a href="#" class="nav-item nav-link" data-toggle="dropdown">{{auth()->user()->name}}</a>
 						<div class="dropdown-menu">
-							<a href="#" class="dropdown-item">Perfil</a>
+							<a href="{{route('users.show',auth()->user()->id)}}" class="dropdown-item">Perfil</a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="dropdown-item">Cerrar Sesión</button>

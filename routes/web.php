@@ -4,7 +4,9 @@ use App\Http\Controllers\CatalogoController;
 use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ImagenController;
+use App\Http\Controllers\ImagenperfilController;
 use App\Http\Controllers\InvitacionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,16 +46,28 @@ Route::post('eventos/store',[EventoController::class,'store'])->name('eventos.st
 Route::get('eventos/generarQR',[EventoController::class,'generarQR'])->name('eventos.generarQR');
 Route::post('eventos/storeQR',[EventoController::class,'storeQR'])->name('eventos.storeQR');
 Route::get('eventos/especifico/{id}',[EventoController::class,'especifico'])->name('eventos.especifico');
+Route::put('eventos/update/{Evento}',[EventoController::class,'update'])->name('eventos.update');
+Route::put('eventos/eliminar/{Evento}',[EventoController::class,'eliminar'])->name('eventos.eliminar');
+Route::get('eventos/clientes/{id}',[EventoController::class,'indexcliente'])->name('eventos.indexcliente');
 
 
 
+
+Route::resource('users',UserController::class);
+Route::resource('imagenperfils',ImagenperfilController::class);
 
 Route::resource('contratos',ContratoController::class);
+Route::get('contratos',[ContratoController::class,'index'])->name('contratos.index');
+Route::get('contratos/create',[ContratoController::class,'create'])->name('contratos.create');
+Route::post('contratos/store',[ContratoController::class,'store'])->name('contratos.store');
+Route::get('contratos/show/{contrato}',[ContratoController::class,'show'])->name('contratos.show');
+Route::put('contratos/update/{contrato}',[ContratoController::class,'update'])->name('contratos.update');
+Route::put('contratos/eliminar/{contrato}',[ContratoController::class,'eliminar'])->name('contratos.eliminar');
+
+
+
 Route::resource('catalogos',CatalogoController::class);
-/* Route::get('catalogos',[CatalogoController::class,'index'])->name('catalogos.index');
-Route::post('catalogos/store',[CatalogoController::class,'store'])->name('catalogos.store');
- */
-/* Route::resource('imagenes',ImagenController::class); */
+
 Route::get('imagenes/{id}',[ImagenController::class,'index'])->name('imagenes.index');
 Route::post('imagenes/store/{id}',[ImagenController::class,'store'])->name('imagenes.store');
 

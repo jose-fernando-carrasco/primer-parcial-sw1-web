@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('detalle');
             $table->string('ubicacion');
             $table->string('cantpersonas');
+            $table->text('url');
+            $table->boolean('eliminado')->default(false);
             $table->unsignedBigInteger('tipoevento_id');
             $table->unsignedBigInteger('organizador_id')->nullable();//prueba el nul
             $table->unsignedBigInteger('estadoevento_id')->default(1);

@@ -66,4 +66,10 @@ class ContratoController extends Controller
     }
 
 
+    public function eliminar(Contrato $contrato){
+        $contrato->eliminado = true;
+        $contrato->update();
+        return redirect()->route('contratos.index');
+    }
+
 }

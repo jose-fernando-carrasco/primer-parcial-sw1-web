@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -17,6 +18,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -73,5 +75,50 @@ class User extends Authenticatable
     public function cliente(){
         $cliente = Cliente::where('user_id',$this->id)->first();
         return $cliente;
+    }
+
+    public function getRol(){
+        $rolcito = "";
+        switch ($this->tipoCuenta) {
+            case 1: $rolcito = "Organizador";
+                    break;
+            case 2: $rolcito = "Fotografo";
+                    break;
+            case 3: $rolcito = "Cliente";
+                    break;
+        }
+       return $rolcito;
+    }
+
+    public function Imagenperfil1(){
+        $imagen1 = Imagenperfil::where('user_id',$this->id)->first();
+        return $imagen1;
+    }
+
+    public function TengoImagenP(){
+        $imagen1 = Imagenperfil::where('user_id',$this->id)->get();
+        if(count($imagen1) == 0){
+            return false;
+        }
+        return true;
+    }
+
+    public function procentajeFotosPerfil(){
+        $imagen1 = Imagenperfil::where('user_id',$this->id)->get();
+        $por = "0%";
+        switch (count($imagen1)) {
+            case 0: $por = "0%";
+                    break;
+            case 1: $por = "33%";
+                    break;
+            case 2: $por = "66%";
+                    break;
+            case 3: $por = "100%";
+                    break;        
+        }
+        if(count($imagen1) >=3)
+           $por = "100%";
+
+        return $por;
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('clausulaDelEvento');
             $table->text('politicaCancelacion');
             $table->text('plazoDeEntrega');
+            $table->boolean('eliminado')->default(false);
             $table->unsignedBigInteger('tipopago_id');
             $table->unsignedBigInteger('evento_id');
             $table->unsignedBigInteger('fotografo_id');

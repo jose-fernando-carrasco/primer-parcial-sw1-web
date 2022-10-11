@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEvento;
+use App\Models\Cliente;
+use App\Models\Contrato;
 use App\Models\Evento;
 use App\Models\Tipoevento;
 use App\Models\User;
@@ -24,8 +26,7 @@ class EventoController extends Controller
 
     public function index(){//Solo Organizador
         $user = User::find(Auth()->user()->id);
-        $Eventos = Evento::where('organizador_id',$user->organizador()->id)->get();
-        //return $Eventos;
+        $Eventos = Evento::where('organizador_id',$user->organizador()->id)->where('eliminado',false)->get();
         return view('eventos.index',compact('Eventos'));
     }
 
@@ -59,4 +60,41 @@ class EventoController extends Controller
     public function especifico($id){
          return view('eventos.especifico');
     }
+
+    public function update(Evento $Evento){//solo el fotografo
+        //return $Evento;
+        switch ($Evento->estadoevento_id) {
+            case 1: $Evento->estadoevento_id = 2;
+                    break;
+            case 2: $Evento->estadoevento_id = 3;
+                    break;
+            case 3: $Evento->estadoevento_id = 3;
+                    break;
+        }
+        //return $contrato->estado_id;
+        $Evento->update();
+        
+        return redirect()->route('eventos.index');
+    }
+
+    public function eliminar(Evento $Evento){
+        $Evento->eliminado = true;
+        $Evento->update();
+        return redirect()->route('eventos.index');
+    }
+
+    public function indexcliente($id){
+        $cliente = Cliente::where('user_id',$id)->first();
+        $EventosInvitados = Evento::select('eventos.*')
+                                    ->join('invitacions','eventos.id','=','invitacions.evento_id')
+                                    ->where('invitacions.cliente_id',$cliente->id)->get();
+        
+        $EventosContratos = Contrato::select('eventos.*')
+                             ->join('eventos','contratos.evento_id','=','eventos.id')
+                             ->join('cliente_contrato','contratos.id','=','cliente_contrato.contrato_id')
+                             ->where('cliente_contrato.cliente_id',$cliente->id)->get();
+   
+        return view('eventos.indexcliente',compact('EventosInvitados','EventosContratos'));
+    }
+
 }

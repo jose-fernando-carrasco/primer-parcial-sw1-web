@@ -113,8 +113,10 @@
     <div class="container pb-5 mb-sm-1">
         <h1 class="d-flex justify-content-center pb-3">Catalogo {{$catalogo->titulo}}</h1>
         <div class="pb-4">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Subir Imagen</button>
+            @can('imagenes.store')
+               <!-- Button trigger modal -->
+               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Subir Imagen</button>
+            @endcan
             <a href="{{route('catalogos.index')}}" class="btn btn-danger">Volver</a>
         </div>
         <!-- Categories grid-->

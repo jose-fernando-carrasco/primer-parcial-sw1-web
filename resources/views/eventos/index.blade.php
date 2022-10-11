@@ -36,7 +36,7 @@
     <div class="card abs-center">
         <div class="card_body absX">
 
-
+    <a href="{{route('home')}}" class="btn btn-danger mb-4">salir</a>
     <table id="Contratos" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -55,13 +55,25 @@
                     <td>
                         
                         @if ($Evento->estadoevento_id == 1)
-                            <a href="{{route('invitaciones.create',$Evento)}}" class="btn btn-success btn-sm">Invitar</a>
-                            <a href="" class="btn btn-warning btn-sm">Iniciar</a>
+                            <a href="{{route('invitaciones.create',$Evento)}}" class="btn btn-primary">Invitar</a>
+                            <form action="{{route('eventos.update',$Evento)}}" method="POST" class="btn btn-warning btn-sm">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-warning btn-sm">Iniciar</button>
+                            </form>
                         @elseif($Evento->estadoevento_id == 2)
-                            <a href="{{route('invitaciones.create',$Evento)}}" class="btn btn-success btn-sm">Invitar</a>
-                            <a href="" class="btn btn-warning btn-sm">Finalizar</a>
+                            <a href="{{route('invitaciones.create',$Evento)}}" class="btn btn-primary">Invitar</a>
+                            <form action="{{route('eventos.update',$Evento)}}" method="POST" class="btn btn-success btn-sm">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-success btn-sm">Finalizar</button>
+                            </form>
                         @else
-                            <a href="" class="btn btn-warning btn-sm">Eliminar</a>
+                            <form action="{{route('eventos.eliminar',$Evento)}}" method="POST" class="btn btn-danger btn-sm">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            </form>
                         @endif
                             
                     </td>

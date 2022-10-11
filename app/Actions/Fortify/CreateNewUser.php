@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Cliente;
 use App\Models\Fotografo;
 use App\Models\Organizador;
 use App\Models\User;
@@ -30,27 +31,37 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        /* return User::create([
+        $rolcito = "";
+        switch ($input['tipoCuenta']) {
+            case 1: $rolcito = "Organizador";
+                    break;
+            case 2: $rolcito = "Fotografo";
+                    break;
+            case 3: $rolcito = "Cliente";
+                    break;
+        }
+        $UserX = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'tipoCuenta' => $input['tipoCuenta'],
             'password' => Hash::make($input['password']),
-        ]);  */
-        $UserX = new User();
-        $UserX->name = $input['name'];
-        $UserX->email = $input['email'];
-        $UserX->tipoCuenta = $input['tipoCuenta'];
-        $UserX->password = Hash::make($input['password']); 
-        $UserX->save();
-
+        ])->assignRole($rolcito); 
+        
         if($input['tipoCuenta'] == "2"){// == 2
             $fotografoX = new Fotografo();
             $fotografoX->user_id = $UserX->id;
             $fotografoX->save(); 
         }else{  // == 1
-            $OrganizadorX = new Organizador();
-            $OrganizadorX->user_id = $UserX->id;
-            $OrganizadorX->save();
+            if($input['tipoCuenta'] == "1"){
+                $OrganizadorX = new Organizador();
+                $OrganizadorX->user_id = $UserX->id;
+                $OrganizadorX->save();
+            }else{// == 3
+                $ClienteX = new Cliente();
+                $ClienteX->user_id = $UserX->id;
+                $ClienteX->save();
+            }
+           
         } 
 
        return $UserX;

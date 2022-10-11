@@ -9,6 +9,12 @@
 </head>
 
 <style>
+
+    .tamanito img{
+        height: 140px;
+        width: 160px;
+    }
+
     .abs-center {
         display: flex;
         align-items: center;
@@ -22,15 +28,20 @@
 </style>
 
 <body>
-    <h1>Ver Contrato Especifico</h1>
-    <div class="container">
+    {{-- <h1>Ver Contrato Especifico</h1> --}}
+    <div class="container mt-5">
        <div class="abs-center">
-            <form class="border p-3 form" action="{{route('contratos.update',$contrato)}}" method="POST">
+            <form class="border p-3 form border border-primary" action="{{route('contratos.update',$contrato)}}" method="POST">
                 @csrf
                 @method('put')
 
                 <div class="form-group col-12">
-                    <label class="h2">Contrato</label>
+                    <label class="h2 d-flex justify-content-center">CONTRATO</label>
+                </div>
+
+                {{-- QR --}}
+                <div id="myQr" class="tamanito mb-4 d-flex justify-content-center">
+          
                 </div>
 
                 <div class="form-row center">
@@ -94,15 +105,19 @@
                 <div class="form-row">
                     <div class="form-group col-md-8">
                         <label class="font-weight-bold">Estado</label>
-                    <input type="text" class="form-control" name="estado_id" value="{{$contrato->estado()->name}}" readonly>
+                        <input type="text" class="form-control" name="estado_id" value="{{$contrato->estado()->name}}" readonly>
+                    </div>
                 </div>
-            </div>
+
+                <div class="form-row">
+                    <input type="hidden" class="form-control" id="url" value="{{route('eventos.especifico',$contrato->evento()->id)}}" readonly>
+                </div>
 
                 @if (Auth()->user()->tipoCuenta == 2) 
                     <button type="submit" class="btn btn-primary">Avanzar Contrato</button>
                 @endif
                     {{-- <button type="submit" class="btn btn-primary">Enviar Contrato</button> --}}
-                <a href="{{route('contratos.index')}}" class="btn btn-danger">Salir</a>
+                <a href="{{route('contratos.index')}}" class="btn btn-danger">volver</a>
             
             </form>
     </div>
@@ -114,5 +129,16 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+    const image = document.getElementById("myQr")
+    /* Mandar la ruta del evento con el id del evento en específico */
+    //const url = 'http://127.0.0.1:8000/eventos/especifico/1'
+    const url = document.getElementById("url").value;
+    console.log(url);
+    const QR = new QRCode(image)
+    QR.makeCode(url)
+</script>
 
 </html>

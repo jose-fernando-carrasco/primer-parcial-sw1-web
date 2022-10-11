@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call(TipoSeeder::class);
+        $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(ImagenperfilSeeder::class);
         $this->call(TelefonoSeeder::class);
         $this->call(OrganizadorSeeder::class);
         $this->call(FotografoSeeder::class);
@@ -38,6 +40,5 @@ class DatabaseSeeder extends Seeder
         $this->call(InvitacionSeeder::class);
         $this->call(ClienteContratoSeeder::class);
         
-
     }
 }
