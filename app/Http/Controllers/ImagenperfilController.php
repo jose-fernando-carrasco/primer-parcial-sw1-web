@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Imagenperfil;
+use App\Models\User;
 use Aws\S3\Exception\S3Exception;
 use Aws\S3\S3Client;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class ImagenperfilController extends Controller
             ]);
             
             $Directorio = 'Perfiles/'.auth()->user()->name.'/';
+            $path = $Directorio.$request->file('file')->getClientOriginalName();
             Storage::disk('s3')->makeDirectory($Directorio);
             $rutita = 'https://mycontenedor23.s3.amazonaws.com/'.$Directorio.$request->file('file')->getClientOriginalName();
             
@@ -30,6 +32,11 @@ class ImagenperfilController extends Controller
                 'ACL'    => 'public-read',
             ]);
             
+            $user = User::find($request->user_id);
+            $user->path = $path;
+            $user->hayPath = true;
+            $user->update();
+
             $imagen = new Imagenperfil();
             $imagen->name = $request->name;
             $imagen->url = $rutita;

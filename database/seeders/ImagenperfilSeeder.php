@@ -32,5 +32,11 @@ class ImagenperfilSeeder extends Seeder
             'url' => 'https://mycontenedor23.s3.amazonaws.com/Perfiles/Jose/jose-3.jpeg',
             'user_id' => 1
         ]);
+
+        Imagenperfil::create([
+            'name' => 'foto-1',
+            'url' => 'https://mycontenedor23.s3.amazonaws.com/Clientes/MarcoBaltazar.jpeg',
+            'user_id' => 3
+        ]);
     }
 }

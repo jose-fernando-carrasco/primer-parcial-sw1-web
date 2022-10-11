@@ -113,15 +113,17 @@ class EventoController extends Controller
 
     public function indexcliente($id){
         $cliente = Cliente::where('user_id',$id)->first();
+        
         $EventosInvitados = Evento::select('eventos.*')
                                     ->join('invitacions','eventos.id','=','invitacions.evento_id')
                                     ->where('invitacions.cliente_id',$cliente->id)->get();
-        
+        //return $EventosInvitados;
         $EventosContratos = Contrato::select('eventos.*')
                              ->join('eventos','contratos.evento_id','=','eventos.id')
                              ->join('cliente_contrato','contratos.id','=','cliente_contrato.contrato_id')
                              ->where('cliente_contrato.cliente_id',$cliente->id)->get();
    
+        //return $EventosContratos;
         return view('eventos.indexcliente',compact('cliente','EventosInvitados','EventosContratos'));
     }
 

@@ -299,7 +299,7 @@
                         <blockquote class="blockquote">
                             <img src="{{$EventosInvitado->url}}" class="tamanito">
                             <footer>
-                                <h3>{{$EventosContrato->titulo}}</h3>
+                                <h3>{{$EventosInvitado->titulo}}</h3>
                                 <a href="" class="btn btn-primary mt-1">ver evento</a>
                             </footer>
                         </blockquote>
@@ -311,7 +311,10 @@
             <div class="col-md-12 mb-4">
                 <h3 class="text-primary"><strong>EVENTO MODO CONTRATO</strong></h3>
             </div>
-
+            
+           
+        {{-- @isset($EventosContratos) --}}
+        
             @foreach ($EventosContratos as $EventosContrato) 
                 <div class="col-md-4 mb-5">
                     <div class="card bg-info bg-gradient mb-3 text-center">
@@ -327,6 +330,7 @@
                     </div>
                 </div>
             @endforeach
+        {{-- @endisset --}}
         </div>
      </div>
 </body>

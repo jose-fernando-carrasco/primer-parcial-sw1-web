@@ -37,6 +37,8 @@ class UserSeeder extends Seeder
             'email' => 'marc@gmail.com',
             'password' => bcrypt('123'),
             'tipoCuenta' => 3,
+            'path' => 'Clientes/MarcoBaltazar.jpeg',
+            'hayPath' => true
         ])->assignRole('Cliente');
 
         User::create([

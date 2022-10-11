@@ -294,7 +294,7 @@ Profile
                             <li role="presentation" class="nav-item"><a class="nav-link active" href="#t1" aria-controls="t1" role="tab" data-toggle="tab">Fotos</a></li>
                         </ul>
     
-                    @for ($i = 0; $i < 3; $i++)   
+                    @for ($i = 0; $i < 5; $i++)   
                         <!-- Tab panes -->
                         <div class="tab-content admin-tab-content pt30">
                             <div role="tabpanel" class="tab-pane active show" id="t1">

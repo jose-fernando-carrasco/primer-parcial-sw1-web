@@ -20,6 +20,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('tipoCuenta');
+            $table->string('path')->nullable();
+            $table->boolean('hayPath')->default(false);
             $table->boolean('eliminado')->default(false);
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
