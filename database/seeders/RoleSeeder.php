@@ -36,6 +36,7 @@ class RoleSeeder extends Seeder
 
         /* Permisos Clientes */
         Permission::create(['name' => 'eventos.indexcliente'])->syncRoles([$clie]);
+        Permission::create(['name' => 'invitaciones.index'])->syncRoles([$clie]);
         
     }
 }

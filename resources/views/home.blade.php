@@ -364,7 +364,9 @@
                        <li><a href="{{route('catalogos.index')}}" class="nav-item nav-link active">Catalogos</a></li>
                     @endcan
 
-                    <li><a href="{{route('invitaciones.index')}}" class="nav-item nav-link">ver Mis Invitaciones</a></li>
+                    @can('invitaciones.index')
+                      <li><a href="{{route('invitaciones.index')}}" class="nav-item nav-link">ver Mis Invitaciones</a></li>
+                    @endcan
 
                     <li class="dropdown">
                         @if(auth()->user()->tipoCuenta != 3)
