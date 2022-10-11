@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('organizador_id');
             $table->unsignedBigInteger('evento_id');
             $table->unsignedBigInteger('cliente_id');
+            $table->boolean('eliminado')->default(false);
             $table->unsignedBigInteger('estadoinvitacion_id')->default(1);
 
             $table->foreign('organizador_id')->references('id')

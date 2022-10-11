@@ -364,14 +364,20 @@
                        <li><a href="{{route('catalogos.index')}}" class="nav-item nav-link active">Catalogos</a></li>
                     @endcan
 
+                    <li><a href="{{route('invitaciones.index')}}" class="nav-item nav-link">ver Mis Invitaciones</a></li>
+
                     <li class="dropdown">
-						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Contratos</a>
-						<div class="dropdown-menu">
-                            @can('contratos.create')
-							   <a href="{{route('contratos.create')}}" class="dropdown-item">Contratar Fotografos</a>
-                            @endcan
-                            <a href="{{route('contratos.index')}}" class="dropdown-item">Ver Contratos</a>
-						</div>
+                        @if(auth()->user()->tipoCuenta != 3)
+                            <a href="#" class="nav-item nav-link" data-toggle="dropdown">Contratos</a>
+                            <div class="dropdown-menu">
+                                @can('contratos.create')
+                                <a href="{{route('contratos.create')}}" class="dropdown-item">Contratar Fotografos</a>
+                                @endcan
+                                @can('contratos.index')
+                                <a href="{{route('contratos.index')}}" class="dropdown-item">Ver Contratos</a>
+                                @endcan
+                            </div>
+                        @endif
 					</li>
 
                     {{-- <li><a href="{{route('invitaciones.create')}}" class="nav-item nav-link">Invitar a Clientes</a></li> --}}

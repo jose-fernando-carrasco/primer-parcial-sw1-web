@@ -53,10 +53,15 @@ Route::get('eventos/clientes/{id}',[EventoController::class,'indexcliente'])->na
 
 
 
-Route::resource('users',UserController::class);
+/* Route::resource('users',UserController::class); */
+Route::get('users',[UserController::class,'index'])->name('users.index');
+Route::get('users/show/{id}',[UserController::class,'show'])->name('users.show');
+Route::put('users/eliminar/{id}',[UserController::class,'eliminar'])->name('users.eliminar');
+
+
 Route::resource('imagenperfils',ImagenperfilController::class);
 
-Route::resource('contratos',ContratoController::class);
+/* Route::resource('contratos',ContratoController::class); */
 Route::get('contratos',[ContratoController::class,'index'])->name('contratos.index');
 Route::get('contratos/create',[ContratoController::class,'create'])->name('contratos.create');
 Route::post('contratos/store',[ContratoController::class,'store'])->name('contratos.store');
@@ -72,6 +77,11 @@ Route::get('imagenes/{id}',[ImagenController::class,'index'])->name('imagenes.in
 Route::post('imagenes/store/{id}',[ImagenController::class,'store'])->name('imagenes.store');
 
 
+Route::get('invitaciones',[InvitacionController::class,'index'])->name('invitaciones.index');
 Route::get('invitaciones/create/{Evento}',[InvitacionController::class,'create'])->name('invitaciones.create');
 Route::post('invitaciones/store',[InvitacionController::class,'store'])->name('invitaciones.store');
+Route::get('invitaciones/show/{id}',[InvitacionController::class,'show'])->name('invitaciones.show');
+Route::put('invitaciones/aceptar/{id}',[InvitacionController::class,'aceptar'])->name('invitaciones.aceptar');
+Route::put('invitaciones/eliminar/{invitacion}',[InvitacionController::class,'eliminar'])->name('invitaciones.eliminar');
+
 

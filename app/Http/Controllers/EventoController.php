@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Aws\S3\Exception\S3Exception;
 use Aws\S3\S3Client;
+use Illuminate\Support\Facades\Storage;
 
 class EventoController extends Controller
 {
@@ -20,7 +21,33 @@ class EventoController extends Controller
     }
 
     public function store(StoreEvento $request){
-        $evento = Evento::create($request->all());
+        
+
+        try {
+            $s3Client = new S3Client([
+                'version' => 'latest',
+                'region'  => 'us-east-1'
+            ]);
+            
+            $newDirectorio = 'Organizadores/'.auth()->user()->name.'/'.$request->titulo.'/';
+            Storage::disk('s3')->makeDirectory($newDirectorio);
+            $rutita = 'https://mycontenedor23.s3.amazonaws.com/'.$newDirectorio.$request->file('file')->getClientOriginalName();
+            
+            $result = $s3Client->putObject([
+                'Bucket' => 'mycontenedor23',
+                'Key' => $newDirectorio.$request->file('file')->getClientOriginalName(),
+                'Body'   => fopen($request->file('file')->getPathName(), 'r'),
+                'ACL'    => 'public-read',
+            ]);
+
+            $evento = Evento::create($request->all());
+            $evento->url = $rutita;
+            $evento->update();
+        
+        } catch(S3Exception $e) {
+            return $e->getMessage() . "\n";
+        }
+
         return redirect()->route('eventos.create')->with('info','ok');
     }
 
@@ -94,7 +121,7 @@ class EventoController extends Controller
                              ->join('cliente_contrato','contratos.id','=','cliente_contrato.contrato_id')
                              ->where('cliente_contrato.cliente_id',$cliente->id)->get();
    
-        return view('eventos.indexcliente',compact('EventosInvitados','EventosContratos'));
+        return view('eventos.indexcliente',compact('cliente','EventosInvitados','EventosContratos'));
     }
 
 }

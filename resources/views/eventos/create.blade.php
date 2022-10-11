@@ -22,12 +22,15 @@
 </style>
 
 <body>
-    <h1>Crear Evento..</h1>
+    {{-- <h1>Crear Evento..</h1> --}}
     <div class="container">
        <div class="abs-center">
-            <form class="border p-3 form" action="{{route('eventos.store')}}" method="POST">
+        
+            <form class="border p-3 form" action="{{route('eventos.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <h3 class="d-flex justify-content-center text-primary mb-4"><strong>CREANDO EVENTO</strong></h3>
                 <div class="form-row center">
+                    
                     <div class="form-group col-md-6">
                         <label>Titulo del Evento</label>
                         <input type="text" class="form-control" name="titulo" value="{{old('titulo')}}">
@@ -35,12 +38,6 @@
                             <small class="text-danger">{{$message}}</small>
                         @enderror
                     </div>
-
-                    {{-- <label for="validationServer01">First name</label>
-                    <input type="text" class="form-control is-valid" id="validationServer01" value="Mark" required>
-                    <div class="valid-feedback">
-                      Looks good!
-                    </div> --}}
 
                     <div class="form-group col-md-6">
                         <label>Tipo de Evento</label>
@@ -65,6 +62,12 @@
                             <small class="text-danger">{{$message}}</small>
                     @enderror
                 </div>
+
+
+                <div class="form-group mt-4 mb-4">
+                    <input name="file" type="file" accept="image/*">
+                </div>
+
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <label>Capacidad</label>

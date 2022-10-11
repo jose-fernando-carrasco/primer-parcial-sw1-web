@@ -37,4 +37,10 @@ class Invitacion extends Model
         } 
     }
 
+
+    public function estado(){
+        $estado = Estadoinvitacion::find($this->estadoinvitacion_id);
+        return $estado;
+    }
+
 }

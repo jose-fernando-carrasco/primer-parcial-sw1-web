@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('detalle');
             $table->string('ubicacion');
             $table->string('cantpersonas');
-            $table->text('url');
+            $table->text('url')->nullable();
             $table->boolean('eliminado')->default(false);
             $table->unsignedBigInteger('tipoevento_id');
             $table->unsignedBigInteger('organizador_id')->nullable();//prueba el nul

@@ -194,7 +194,12 @@
                             <div class="single_advisor_details_info">
                                 <h4 class="d-flex justify-content-center">{{$user->name}}</h4>
                                 <h5 class="designation d-flex justify-content-center">{{$user->getRol()}}</h5>
-                                <a href="" class="btn btn-danger mt-4 d-flex justify-content-center">eliminar</a>
+                                <form action="{{route('users.eliminar', $user->id)}}" method="POST" class="btn btn-danger mt-4 d-flex justify-content-center">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                                {{-- <a href="" class="btn btn-danger mt-4 d-flex justify-content-center">eliminar</a> --}}
                                 <a href="{{route('users.show',$user->id)}}" class="btn btn-primary mt-4 d-flex justify-content-center">ver</a>
                             </div>
                             

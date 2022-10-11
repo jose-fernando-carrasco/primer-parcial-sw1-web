@@ -287,7 +287,8 @@
         <div class="row mb-5 mt-4">
             
             <div class="col-md-12 mt-4 mb-4">
-                <a href="" class="btn btn-danger mb-3">salir</a>
+                <a href="{{route('users.show',$cliente->user()->id)}}" class="btn btn-success mb-3">volver</a>
+                <a href="{{route('home')}}" class="btn btn-danger mb-3">salir</a>
                 <h3 class="text-primary"><strong>EVENTO MODO INVITADO</strong></h3>
             </div>
 

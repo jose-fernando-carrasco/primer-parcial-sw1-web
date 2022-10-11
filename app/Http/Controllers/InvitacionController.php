@@ -23,4 +23,28 @@ class InvitacionController extends Controller
         return redirect()->route('invitaciones.create',compact('Evento'))->with('info','ok');
     }
 
+    public function index(){
+        $cliente = Cliente::where('user_id',auth()->user()->id)->first();
+        $invitaciones = Invitacion::where('cliente_id',$cliente->id)->where('eliminado',false)->get();
+        return view('invitaciones.index',compact('invitaciones'));
+    }
+
+    public function show($id){
+       $invitacion = Invitacion::find($id);
+       $cliente = CLiente::find($id);
+       return view('invitaciones.show',compact('invitacion','cliente'));
+    }
+
+    public function aceptar($id){
+       $invitacion = Invitacion::find($id);
+       $invitacion->estadoinvitacion_id = 2;
+       $invitacion->update();
+       return redirect()->route('invitaciones.show',$invitacion);
+    }
+
+    public function eliminar(Invitacion $invitacion){
+       $invitacion->eliminado = true;
+       $invitacion->update();
+       return redirect()->route('invitaciones.index');
+    }
 }

@@ -26,6 +26,7 @@ class RoleSeeder extends Seeder
 
         /* Permisos de Organizador */
         Permission::create(['name' => 'contratos.create'])->syncRoles([$orga]);
+        Permission::create(['name' => 'contratos.index'])->syncRoles([$orga,$foto]);
         Permission::create(['name' => 'eventos.index'])->syncRoles([$orga]);
         
         /* Permisos de Fotografos */

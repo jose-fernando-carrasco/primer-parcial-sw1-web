@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index(){
-        $users = User::all();
+        $users = User::where('eliminado',false)->get();
         return view('users.index',compact('users'));
     }
 
@@ -18,5 +18,12 @@ class UserController extends Controller
         $fotos = Imagenperfil::where('user_id',$id)->get();
         $cantFotos = count($fotos );
         return view('users.show',compact('user','fotos','cantFotos'));
+    }
+
+    public function eliminar($id){
+        $user = User::find($id);
+        $user->eliminado = true;
+        $user->update();
+        return redirect()->route('users.index');
     }
 }
