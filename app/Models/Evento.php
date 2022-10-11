@@ -31,4 +31,9 @@ class Evento extends Model
         return $estado;
     }
 
+    public function organizador(){
+        $orga = Organizador::find($this->organizador_id);
+        return $orga;
+    }
+
 }

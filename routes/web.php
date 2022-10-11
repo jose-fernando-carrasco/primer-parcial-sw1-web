@@ -4,6 +4,7 @@ use App\Http\Controllers\CatalogoController;
 use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ImagenController;
+use App\Http\Controllers\ImageneventoController;
 use App\Http\Controllers\ImagenperfilController;
 use App\Http\Controllers\InvitacionController;
 use App\Http\Controllers\UserController;
@@ -49,6 +50,8 @@ Route::get('eventos/especifico/{id}',[EventoController::class,'especifico'])->na
 Route::put('eventos/update/{Evento}',[EventoController::class,'update'])->name('eventos.update');
 Route::put('eventos/eliminar/{Evento}',[EventoController::class,'eliminar'])->name('eventos.eliminar');
 Route::get('eventos/clientes/{id}',[EventoController::class,'indexcliente'])->name('eventos.indexcliente');
+Route::get('eventos/imageneventos/{id}',[EventoController::class,'imageneventos'])->name('eventos.imageneventos');
+
 
 
 
@@ -68,6 +71,9 @@ Route::post('contratos/store',[ContratoController::class,'store'])->name('contra
 Route::get('contratos/show/{contrato}',[ContratoController::class,'show'])->name('contratos.show');
 Route::put('contratos/update/{contrato}',[ContratoController::class,'update'])->name('contratos.update');
 Route::put('contratos/eliminar/{contrato}',[ContratoController::class,'eliminar'])->name('contratos.eliminar');
+
+
+Route::post('imageneventos/store',[ImageneventoController::class,'store'])->name('imageneventos.store');
 
 
 

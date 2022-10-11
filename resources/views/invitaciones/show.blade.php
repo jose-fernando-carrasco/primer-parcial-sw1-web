@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="form-row">
-                    <input type="hidden" class="form-control" id="url" value="{{route('eventos.especifico',$invitacion->evento()->id)}}" readonly>
+                    <input type="hidden" class="form-control" id="url" value="{{route('eventos.imageneventos',$invitacion->evento()->id)}}" readonly>
                 </div>
 
                 <div class="form-row">

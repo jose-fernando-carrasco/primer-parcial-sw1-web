@@ -29,6 +29,55 @@
 
 <body>
     {{-- <h1>Ver Contrato Especifico</h1> --}}
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Subiendo Foto al Evento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <form action="{{route('imageneventos.store')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>Nombre de la foto</label>
+                        <input type="text" class="form-control" name="name">
+                        @error('name')
+                            <small class="text-danger">{{$message}}</small>
+                        @enderror{{--  despuer ver com quedarse en el modal paa ver el error --}}
+                    </div>
+
+                    <div class="form-group">
+                        <input name="file" type="file" accept="image/*">
+                    </div>
+
+                    <div class="form-group">{{-- solo Los fotografos pueden crear catalogos --}}
+                        <input type="hidden" class="form-control" name="evento_id" value="{{$contrato->evento()->id}}">
+                    </div>
+
+                    <div class="form-group">{{-- solo Los fotografos pueden crear catalogos --}}
+                        <input type="hidden" class="form-control" name="contrato_id" value="{{$contrato->id}}">
+                    </div>
+
+                    <div class="form-group">{{-- solo Los fotografos pueden crear catalogos --}}
+                        @if(auth()->user()->tipoCuenta == 2)
+                           <input type="hidden" class="form-control" name="fotografo_id" value="{{auth()->user()->fotografo()->id}}">
+                        @endif
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Subir</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
     <div class="container mt-5">
        <div class="abs-center">
             <form class="border p-3 form border border-primary" action="{{route('contratos.update',$contrato)}}" method="POST">
@@ -110,7 +159,7 @@
                 </div>
 
                 <div class="form-row">
-                    <input type="hidden" class="form-control" id="url" value="{{route('eventos.especifico',$contrato->evento()->id)}}" readonly>
+                    <input type="hidden" class="form-control" id="url" value="{{route('eventos.imageneventos',$contrato->evento()->id)}}" readonly>
                 </div>
 
                 @if (Auth()->user()->tipoCuenta == 2) 
@@ -118,7 +167,10 @@
                 @endif
                     {{-- <button type="submit" class="btn btn-primary">Enviar Contrato</button> --}}
                 <a href="{{route('contratos.index')}}" class="btn btn-danger">volver</a>
-            
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop">
+                    subir foto
+                </button>
+                
             </form>
     </div>
 </div>

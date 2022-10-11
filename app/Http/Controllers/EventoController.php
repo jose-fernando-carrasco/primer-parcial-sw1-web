@@ -6,6 +6,7 @@ use App\Http\Requests\StoreEvento;
 use App\Models\Cliente;
 use App\Models\Contrato;
 use App\Models\Evento;
+use App\Models\Imagenevento;
 use App\Models\Tipoevento;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -122,6 +123,12 @@ class EventoController extends Controller
                              ->where('cliente_contrato.cliente_id',$cliente->id)->get();
    
         return view('eventos.indexcliente',compact('cliente','EventosInvitados','EventosContratos'));
+    }
+
+
+    public function imageneventos($id){
+        $imagenes = Imagenevento::where('evento_id',$id)->get();
+        return view('eventos.imageneventos',compact('imagenes'));
     }
 
 }

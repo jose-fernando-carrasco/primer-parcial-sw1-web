@@ -298,7 +298,10 @@
                     <div class="card-body">
                         <blockquote class="blockquote">
                             <img src="{{$EventosInvitado->url}}" class="tamanito">
-                            <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                            <footer>
+                                <h3>{{$EventosContrato->titulo}}</h3>
+                                <a href="" class="btn btn-primary mt-1">ver evento</a>
+                            </footer>
                         </blockquote>
                     </div>
                     </div>
@@ -317,7 +320,7 @@
                             <img src="{{$EventosContrato->url}}" class="tamanito">
                             <footer>
                                 <h3>{{$EventosContrato->titulo}}</h3>
-                                <a href="" class="btn btn-primary mt-1">ver evento</a>
+                                <a href="{{route('eventos.imageneventos',$EventosContrato->id)}}" class="btn btn-primary mt-1">ver evento</a>
                             </footer>
                             </blockquote>
                         </div>

@@ -32,7 +32,6 @@
 <body>
      {{-- <h1>Index Contratos</h1> --}}
     
-
     <div class="card abs-center">
         <div class="card_body absX">
     <h1 class="d-flex justify-content-center">CONTRATOS</h1>
@@ -60,6 +59,8 @@
                             @method('PUT')
                             <button type="submit" class="btn btn-warning btn-sm">Eliminar</button>
                         </form>
+                        <!-- Button trigger modal -->
+                        
                     </td>
                 </tr>
             @endforeach

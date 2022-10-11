@@ -365,7 +365,7 @@
                     @endcan
 
                     @can('invitaciones.index')
-                      <li><a href="{{route('invitaciones.index')}}" class="nav-item nav-link">ver Mis Invitaciones</a></li>
+                      <li><a href="{{route('invitaciones.index')}}" class="nav-item nav-link">Ver Mis Invitaciones</a></li>
                     @endcan
 
                     <li class="dropdown">
